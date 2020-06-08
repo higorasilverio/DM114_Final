@@ -6,3 +6,5 @@ Prof. Msc. Paulo César Siécola
 
 Initial commit in:
 May, 25th of 2020.
+
+First fase: Consuming REST services with Retrofit and corotines
