@@ -31,4 +31,5 @@ object SharedPreferencesUtils {
         val context = MainApplication.getApplicationContext()
         return context.getSharedPreferences("main", Context.MODE_PRIVATE)
     }
+
 }

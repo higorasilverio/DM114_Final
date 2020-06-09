@@ -1,4 +1,4 @@
-package br.com.silverio.dm114_final.Product
+package br.com.silverio.dm114_final.product
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "ProductListViewModel"
 
 class ProductListViewModel : ViewModel() {
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     private val _products = MutableLiveData<List<Product>>()
@@ -28,21 +29,26 @@ class ProductListViewModel : ViewModel() {
             var getProductsDeferred = SalesApi.retrofitService.getProducts()
             try {
                 Log.i(TAG, "Loading products")
+
                 var productsList = getProductsDeferred.await()
+
                 Log.i(TAG, "Number of products ${productsList.size}")
+
                 _products.value = productsList
+
             } catch (e: Exception) {
                 Log.i(TAG, "Error: ${e.message}")
             }
         }
+
         Log.i(TAG, "Products list requested")
-    }
-    fun refreshProducts() {
-        _products.value = null
-        getProducts()
     }
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+    fun refreshProducts() {
+        _products.value = null
+        getProducts()
     }
 }

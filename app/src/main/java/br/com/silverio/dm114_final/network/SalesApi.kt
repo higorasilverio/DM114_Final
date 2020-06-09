@@ -33,9 +33,6 @@ interface SalesApiService {
     @GET("api/products")
     fun getProducts(): Deferred<List<Product>>
 
-    @GET("api/products/{code}")
-    fun getProductByCode(@Path("code") code: String): Deferred<Product>
-
     @POST("oauth/token")
     @FormUrlEncoded
     fun getToken(
@@ -44,6 +41,9 @@ interface SalesApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<OauthTokenResponse>
+
+    @GET("api/products/{code}")
+    fun getProductByCode(@Path("code") code: String): Deferred<Product>
 }
 
 object SalesApi {
