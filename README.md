@@ -7,4 +7,6 @@ Prof. Msc. Paulo César Siécola
 Initial commit in:
 May, 25th of 2020.
 
-First fase: Consuming REST services with Retrofit and corotines
+First phase: Consuming REST services with Retrofit and corotines
+
+Second phase: Using Fragments and RecyclerView to show the list of product and its details, when selected.
