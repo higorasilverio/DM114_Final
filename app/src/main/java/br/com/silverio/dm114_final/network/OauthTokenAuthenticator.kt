@@ -9,7 +9,7 @@ import okhttp3.Route
 
 private const val TAG = "OauthTokenAuthenticator"
 
-class OauthTokenAuthenticator() : Authenticator {
+class OauthTokenAuthenticator : Authenticator {
 
     override fun authenticate(route: Route?, response: Response): Request? {
         val accessToken: String?
@@ -17,7 +17,7 @@ class OauthTokenAuthenticator() : Authenticator {
         accessToken = token.accessToken
         SharedPreferencesUtils.saveToken(token.accessToken, token.expiresIn)
         return response.request().newBuilder()
-            .header("Authorization", "Bearer ${accessToken}")
+            .header("Authorization", "Bearer $accessToken")
             .build()
     }
     private fun retrieveNewToken(): OauthTokenResponse {

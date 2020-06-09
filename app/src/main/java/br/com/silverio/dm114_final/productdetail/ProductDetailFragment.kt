@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import br.com.silverio.dm114_final.databinding.FragmentProductDetailBinding
-import br.com.silverio.dm114_final.productdetail.ProductDetailFragmentArgs
-import br.com.silverio.dm114_final.productdetail.ProductDetailViewModel
-import br.com.silverio.dm114_final.productdetail.ProductDetailViewModelFactory
 
 private const val TAG = "ProductDetailFragment"
 class ProductDetailFragment : Fragment() {

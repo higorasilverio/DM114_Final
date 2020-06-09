@@ -1,9 +1,7 @@
 package br.com.silverio.dm114_final
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProviders
-import br.com.silverio.dm114_final.product.ProductListViewModel
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
