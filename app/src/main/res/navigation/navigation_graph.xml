@@ -3,23 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/fragmentProductsList">
-    <fragment
-        android:id="@+id/fragmentProductsList"
-        android:name="br.com.silverio.dm114_final.product.ProductsListFragment"
-        android:label="fragment_products_list"
-        tools:layout="@layout/fragment_products_list" >
-        <action
-            android:id="@+id/action_showProductDetail"
-            app:destination="@id/fragmentProductDetail" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentProductDetail"
-        android:name="br.com.silverio.dm114_final.productdetail.ProductDetailFragment"
-        android:label="fragment_product_detail"
-        tools:layout="@layout/fragment_product_detail" >
+    app:startDestination="@id/fragmentProductInfo">
+    <action
+        android:id="@+id/action_showProductInfo"
+        app:destination="@id/fragmentProductInfo" >
         <argument
-            android:name="productCode"
-            app:argType="string" />
+            app:nullable="true"
+            android:name="productInfo"
+            app:argType="string"/>
+    </action>
+    <fragment
+        android:id="@+id/fragmentProductInfo"
+        android:name="br.com.silverio.dm114_final.product.ProductInfoFragment"
+        android:label="fragment_products_list"
+        tools:layout="@layout/fragment_product_info" >
     </fragment>
 </navigation>
