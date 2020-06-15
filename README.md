@@ -14,3 +14,5 @@ Second phase: Using Fragments and RecyclerView to show the list of product and i
 Third phase: Receiving messages from Firebase Cloud Messaging.
 In this phase it was also created another project, named Auxiliar, to keep the files alread coded but not use. 
 If they are kept inside the same project, under development, they throw exceptions.
+
+Fourth phase: Including the remote config, authentication and events control inside the Firebase project console.
