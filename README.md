@@ -16,3 +16,5 @@ In this phase it was also created another project, named Auxiliar, to keep the f
 If they are kept inside the same project, under development, they throw exceptions.
 
 Fourth phase: Including the remote config, authentication and events control inside the Firebase project console.
+
+Fifth phase: At this moment, the project is already authenticating at the Firebase project and it is sending messages to the app, which are interpreted and shown in its initial screen.
