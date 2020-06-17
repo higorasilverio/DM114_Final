@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 true
             }
-            R.id.nav_list_product -> {
+            R.id.nav_list_orders -> {
                 AuthUI.getInstance()
                     .signOut(this)
                     .addOnCompleteListener {
