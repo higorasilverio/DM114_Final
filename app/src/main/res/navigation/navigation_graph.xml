@@ -12,6 +12,29 @@
             android:name="orderInfo"
             app:argType="string"/>
     </action>
+    <action
+        android:id="@+id/action_showOrderList"
+        app:destination="@id/fragmentProductsList" >
+    </action>
+    <fragment
+        android:id="@+id/fragmentProductsList"
+        android:name="br.com.silverio.dm114_final.product.ProductsListFragment"
+        android:label="fragment_products_list"
+        tools:layout="@layout/fragment_products_list" >
+        <action
+            android:id="@+id/action_showProductDetail"
+            app:destination="@id/fragmentProductDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentProductDetail"
+        android:name="br.com.silverio.dm114_final.productdetail.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="productCode"
+            app:nullable="true"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentOrderInfo"
         android:name="br.com.silverio.dm114_final.order.OrderInfoFragment"
