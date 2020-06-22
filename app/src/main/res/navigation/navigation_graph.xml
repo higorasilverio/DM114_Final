@@ -12,24 +12,20 @@
             android:name="orderInfo"
             app:argType="string"/>
     </action>
-    <action
-        android:id="@+id/action_showOrderList"
-        app:destination="@id/fragmentProductsList" >
-    </action>
     <fragment
-        android:id="@+id/fragmentProductsList"
-        android:name="br.com.silverio.dm114_final.product.ProductsListFragment"
-        android:label="fragment_products_list"
-        tools:layout="@layout/fragment_products_list" >
+        android:id="@+id/fragmentOrdersList"
+        android:name="br.com.silverio.dm114_final.order.OrdersListFragment"
+        android:label="fragment_orders_list"
+        tools:layout="@layout/fragment_order_list" >
         <action
-            android:id="@+id/action_showProductDetail"
-            app:destination="@id/fragmentProductDetail" />
+            android:id="@+id/action_showOrderDetail"
+            app:destination="@id/fragmentOrderDetail" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentProductDetail"
-        android:name="br.com.silverio.dm114_final.productdetail.ProductDetailFragment"
-        android:label="fragment_product_detail"
-        tools:layout="@layout/fragment_product_detail" >
+        android:id="@+id/fragmentOrderDetail"
+        android:name="br.com.silverio.dm114_final.orderdetail.OrderDetailFragment"
+        android:label="fragment_order_detail"
+        tools:layout="@layout/fragment_order_detail" >
         <argument
             android:name="productCode"
             app:nullable="true"
@@ -40,5 +36,9 @@
         android:name="br.com.silverio.dm114_final.order.OrderInfoFragment"
         android:label="fragment_order_list"
         tools:layout="@layout/fragment_order_info" >
+        <action
+            android:id="@+id/action_showOrderList"
+            app:destination="@id/fragmentOrdersList" >
+        </action>
     </fragment>
 </navigation>

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="productDetailViewModel"
-            type="br.com.silverio.dm114_final.productdetail.ProductDetailViewModel" />
+            name="orderDetailViewModel"
+            type="br.com.silverio.dm114_final.orderdetail.OrderDetailViewModel" />
         <variable
             name="orderInfoViewModel"
             type="br.com.silverio.dm114_final.order.OrderInfoViewModel" />
@@ -16,7 +16,6 @@
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--Visual components here-->
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="0dp"
@@ -87,7 +86,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{orderInfoViewModel.order.productCode}"
+                app:date="@{orderDetailViewModel.order.date}"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +98,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:text="Produtc"
+                android:text="Product"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -131,7 +130,7 @@
                 android:ems="10"
                 android:inputType="textCapWords"
                 android:textSize="24sp"
-                android:text="@{productDetailViewModel.product.name}"
+                android:text="@{orderDetailViewModel.order.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -159,7 +158,7 @@
                 android:ems="10"
                 android:inputType="textCapCharacters"
                 android:textSize="24sp"
-                android:text="@{productDetailViewModel.product.code}"
+                android:text="@{orderDetailViewModel.order.code}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -188,7 +187,7 @@
                 android:ems="10"
                 android:inputType="numberSigned|numberDecimal"
                 android:textSize="24sp"
-                app:productPrice="@{productDetailViewModel.product.price}"
+                app:productPrice="@{orderDetailViewModel.order.price}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

@@ -7,16 +7,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 
-private const val TAG = "ProductRepository"
-private const val COLLECTION = "products"
+private const val TAG = "OrderRepository"
+private const val COLLECTION = "orders"
 private const val FIELD_USER_ID = "userId"
+private const val FIELD_IDENTIFICATION = "identification"
 private const val FIELD_NAME = "name"
 private const val FIELD_DESCRIPTION = "description"
 private const val FIELD_CODE = "code"
 private const val FIELD_PRICE = "price"
 private const val FIELD_DATE = "date"
 
-object ProductRepository {
+object OrderRepository {
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
@@ -24,8 +25,8 @@ object ProductRepository {
     private val firebaseFirestore: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
-    fun getProducts(): MutableLiveData<List<Product>> {
-        val liveProducts = MutableLiveData<List<Product>>()
+    fun getOrders(): MutableLiveData<List<OrderPersistence>> {
+        val liveOrders = MutableLiveData<List<OrderPersistence>>()
         firebaseFirestore.collection(COLLECTION)
             .whereEqualTo(FIELD_USER_ID, firebaseAuth.uid)
             .orderBy(FIELD_NAME, Query.Direction.ASCENDING)
@@ -35,21 +36,21 @@ object ProductRepository {
                     return@addSnapshotListener
                 }
                 if (querySnapshot != null && !querySnapshot.isEmpty) {
-                    val products = ArrayList<Product>()
+                    val orders = ArrayList<OrderPersistence>()
                     querySnapshot.forEach {
-                        val product = it.toObject<Product>()
-                        product.id = it.id
-                        products.add(product)
+                        val order = it.toObject<OrderPersistence>()
+                        order.id = it.id
+                        orders.add(order)
                     }
-                    liveProducts.postValue(products)
+                    liveOrders.postValue(orders)
                 } else {
-                    Log.d(TAG, "No product has been found")
+                    Log.d(TAG, "No order has been found")
                 }
             }
-        return liveProducts
+        return liveOrders
     }
-    fun getProductByCode(code: String): MutableLiveData<Product> {
-        val liveProduct: MutableLiveData<Product> = MutableLiveData()
+    fun getOrderByCode(code: String): MutableLiveData<OrderPersistence> {
+        val liveOrder: MutableLiveData<OrderPersistence> = MutableLiveData()
         firebaseFirestore.collection(COLLECTION)
             .whereEqualTo(FIELD_CODE, code)
             .whereEqualTo(FIELD_USER_ID, firebaseAuth.uid)
@@ -59,32 +60,32 @@ object ProductRepository {
                     return@addSnapshotListener
                 }
                 if (querySnapshot != null && !querySnapshot.isEmpty) {
-                    val products = ArrayList<Product>()
+                    val orders = ArrayList<OrderPersistence>()
                     querySnapshot.forEach {
-                        val product = it.toObject<Product>()
-                        product.id = it.id
-                        products.add(product)
+                        val order = it.toObject<OrderPersistence>()
+                        order.id = it.id
+                        orders.add(order)
                     }
-                    liveProduct.postValue(products[0])
+                    liveOrder.postValue(orders[0])
                 } else {
-                    Log.d(TAG, "No product has been found")
+                    Log.d(TAG, "No order has been found")
                 }
             }
-        return liveProduct
+        return liveOrder
     }
-    fun saveProduct(product: Product): String {
-        val document = if (product.id != null) {
-            firebaseFirestore.collection(COLLECTION).document(product.id!!)
+    fun saveOrder(order: OrderPersistence): String {
+        val document = if (order.id != null) {
+            firebaseFirestore.collection(COLLECTION).document(order.id!!)
         } else {
-            product.userId = firebaseAuth.getUid()!!
+            order.userId = firebaseAuth.getUid()!!
             firebaseFirestore.collection(COLLECTION).document()
         }
-        document.set(product)
+        document.set(order)
         return document.id
     }
 
-    fun deleteProduct(productId: String) {
-        val document = firebaseFirestore.collection(COLLECTION).document(productId)
+    fun deleteOrder(orderId: String) {
+        val document = firebaseFirestore.collection(COLLECTION).document(orderId)
         document.delete()
     }
 }

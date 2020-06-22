@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="productListViewModel"
-            type="br.com.silverio.dm114_final.product.ProductListViewModel" />
+            name="orderListViewModel"
+            type="br.com.silverio.dm114_final.order.OrderListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,12 +13,12 @@
         android:layout_height="match_parent">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/productsRefresh"
+            android:id="@+id/ordersRefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvProducts"
+            android:id="@+id/rcvOrders"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -32,8 +32,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:productsList="@{productListViewModel.products}"
-            tools:listitem="@layout/item_product" />
+            app:ordersList="@{orderListViewModel.orders}"
+            tools:listitem="@layout/item_order" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

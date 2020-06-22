@@ -6,25 +6,45 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import br.com.silverio.dm114_final.MainActivity
 import br.com.silverio.dm114_final.R
+import br.com.silverio.dm114_final.order.Order
+import br.com.silverio.dm114_final.persistence.OrderPersistence
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.squareup.moshi.Json
 
-private const val TAG = "FCMService"
+private const val COLLECTION = "orders"
 
 class FCMService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
-        Log.d(TAG, "FCM token: $token")
     }
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         remoteMessage.data.isNotEmpty().let {
-            Log.d(TAG, "Payload: " + remoteMessage.data)
             if (remoteMessage.data.containsKey("orderDetail")) {
-                sendOrderNotification(remoteMessage.data.get("orderDetail")!!)
+
+                @Json(name = "username")
+                val username: String
+                @Json(name = "orderId")
+                val orderId: Int
+                @Json(name = "status")
+                val status: String
+                @Json(name = "productCode")
+                val productCode: String
+
+                //val orderReceived = OrderPersistence (username, orderId, status, productCode)
+
+                val user = FirebaseAuth.getInstance().currentUser
+                if (user != null) {
+                    //if (orderReceived.username == user.email)
+
+                        //saveOrder(orderReceived)
+                        sendOrderNotification(remoteMessage.data.get("orderDetail")!!)
+
+                }
             }
         }
     }
@@ -55,5 +75,25 @@ class FCMService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notificationBuilder.build())
+    }
+    private val firebaseFirestore: FirebaseFirestore by lazy {
+        FirebaseFirestore.getInstance()
+    }
+    private val firebaseAuth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+    fun saveOrder(order: Order): String {
+        val document = if (order.orderId != null) {
+            firebaseFirestore.collection(COLLECTION).document(order.productCode!!)
+        } else {
+            order.username = firebaseAuth.getUid()!!
+            firebaseFirestore.collection(COLLECTION).document()
+        }
+        document.set(order)
+        return document.id
+    }
+
+    fun getOrderByCode(code: String){
+
     }
 }
