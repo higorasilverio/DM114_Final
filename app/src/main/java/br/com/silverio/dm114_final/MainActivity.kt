@@ -64,7 +64,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.nav_list_orders -> {
-                showOrderList()
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        this.recreate()
+                    }
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -73,9 +77,6 @@ class MainActivity : AppCompatActivity() {
     private fun showOrderInfo(orderInfo: String) {
         this.findNavController(R.id.nav_host_fragment)
             .navigate(OrderInfoFragmentDirections.actionShowOrderInfo(orderInfo))
-    }
-    private fun showOrderList() {
-
     }
     override fun onNewIntent(intent: Intent) {
         if (intent.hasExtra("orderDetail")) {

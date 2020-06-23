@@ -28,20 +28,14 @@ class FCMService : FirebaseMessagingService() {
 
                 @Json(name = "username")
                 val username: String
-                @Json(name = "orderId")
-                val orderId: Int
-                @Json(name = "status")
-                val status: String
                 @Json(name = "productCode")
                 val productCode: String
 
-                //val orderReceived = OrderPersistence (username, orderId, status, productCode)
-
                 val user = FirebaseAuth.getInstance().currentUser
-                if (user != null) {
-                    //if (orderReceived.username == user.email)
 
-                        //saveOrder(orderReceived)
+                if (user != null) {
+                    if (username == user.email)
+
                         sendOrderNotification(remoteMessage.data.get("orderDetail")!!)
 
                 }
@@ -91,9 +85,5 @@ class FCMService : FirebaseMessagingService() {
         }
         document.set(order)
         return document.id
-    }
-
-    fun getOrderByCode(code: String){
-
     }
 }
