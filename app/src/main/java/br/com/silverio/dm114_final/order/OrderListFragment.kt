@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 
-
 class OrdersListFragment : Fragment() {
 
     private val orderListViewModel: OrderListViewModel by lazy {

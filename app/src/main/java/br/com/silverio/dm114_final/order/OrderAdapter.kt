@@ -30,8 +30,8 @@ class OrderAdapter
 
     class OrderViewHolder(private var binding: ItemOrderBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(order: Order) {
-            binding.order = order
+        fun bind(order: OrderPersistence) {
+            binding.orderPersistence = order
             binding.executePendingBindings()
         }
     }

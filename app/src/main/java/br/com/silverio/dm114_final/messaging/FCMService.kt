@@ -24,22 +24,8 @@ class FCMService : FirebaseMessagingService() {
     }
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         remoteMessage.data.isNotEmpty().let {
-            if (remoteMessage.data.containsKey("orderDetail")) {
-
-                @Json(name = "username")
-                val username: String
-                @Json(name = "productCode")
-                val productCode: String
-
-                val user = FirebaseAuth.getInstance().currentUser
-
-                if (user != null) {
-                    if (username == user.email)
-
-                        sendOrderNotification(remoteMessage.data.get("orderDetail")!!)
-
-                }
-            }
+            if (remoteMessage.data.containsKey("orderDetail"))
+                sendOrderNotification(remoteMessage.data.get("orderDetail")!!)
         }
     }
     private fun sendOrderNotification(orderInfo: String) {
