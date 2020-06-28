@@ -1,0 +1,7 @@
+user: higor.asilverio_eng@hotmail.com
+password: dm144
+package: br.com.silverio.dm114_final
+
+FCM Token: cqx6Cjo6WYI:APA91bGtslGQsUHwxOYQFVtAScQzZYyMlH1m_5ovCIX-z1xQGW3JvZXC6ymw-yHio814bdgUBE-_3Lzy0i0XdzcYYPxA2mb7SuCbdZXJshiCStjTFapPtb8G23-MrM9XqvnxtAjLXLcN
+
+Server: AAAAPSyOLPg:APA91bEArjRRrMaN95jg8XG4Eq6b5NuPqxFPt3wO6pS6K8HixQO2JAiFzb0N1zNZA0rjThzfoMeDx_KCGUCc32BPk1rJaIo4qNLxB4Tu1_mbA4Al40OD0i81CCeuw9j2sc_nOuY_NFq7
